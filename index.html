@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0a1f" />
+    <meta name="description" content="Pesquisa de satisfação (só vale elogio) 💌" />
+    <title>Pesquisa de Satisfação 💌</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Fundo: brilho rosa, estrelinhas e corações flutuando (gerados no main.js) -->
+    <div class="sky" aria-hidden="true">
+      <div class="glow glow--1"></div>
+      <div class="glow glow--2"></div>
+      <div class="stars" id="stars"></div>
+      <div class="bg-hearts" id="bgHearts"></div>
+    </div>
+
+    <main class="stage" id="stage">
+      <div class="scene" id="scene">
+        <!-- Coraçõezinhos ao redor do envelope -->
+        <div class="orbit" aria-hidden="true">
+          <span class="orbit__heart" style="--x: -6%; --y: 8%; --s: 1.1; --d: 0s"></span>
+          <span class="orbit__heart" style="--x: 104%; --y: 2%; --s: 0.8; --d: -1.2s"></span>
+          <span class="orbit__heart" style="--x: -10%; --y: 78%; --s: 0.7; --d: -2.1s"></span>
+          <span class="orbit__heart" style="--x: 106%; --y: 70%; --s: 1.2; --d: -0.6s"></span>
+          <span class="orbit__heart" style="--x: 18%; --y: -22%; --s: 0.6; --d: -1.7s"></span>
+          <span class="orbit__heart" style="--x: 84%; --y: -18%; --s: 0.9; --d: -2.6s"></span>
+          <span class="orbit__heart" style="--x: 12%; --y: 116%; --s: 0.65; --d: -0.9s"></span>
+        </div>
+
+        <div class="envelope" id="envelope">
+          <span class="envelope__back"></span>
+
+          <span class="envelope__flap" aria-hidden="true">
+            <svg viewBox="0 0 100 60" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="flapGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ff9ebb" />
+                  <stop offset="1" stop-color="#ff85a8" />
+                </linearGradient>
+              </defs>
+              <path d="M0 0H100L55.5 54.5Q50 60 44.5 54.5Z" fill="url(#flapGrad)" />
+            </svg>
+          </span>
+
+          <div class="letter-clip" id="letterClip">
+            <article class="letter" id="letter" inert aria-labelledby="surveyTitle">
+              <!-- Conteúdo da pesquisa é montado pelo src/main.js (textos no topo do arquivo) -->
+              <div class="letter__inner" id="letterInner"></div>
+            </article>
+          </div>
+
+          <span class="envelope__pocket" aria-hidden="true"></span>
+
+          <span class="seal" aria-hidden="true">
+            <svg viewBox="0 0 100 90">
+              <defs>
+                <linearGradient id="sealGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ff6f98" />
+                  <stop offset="1" stop-color="#ff2f63" />
+                </linearGradient>
+              </defs>
+              <path fill="url(#sealGrad)" d="M50 86C20 66 4 50 4 30 4 14 16 4 29 4c9 0 16 5 21 13 5-8 12-13 21-13 13 0 25 10 25 26 0 20-16 36-46 56z" />
+              <path fill="#fff" opacity=".35" d="M20 18c4-5 11-6 15-3-6 1-10 5-12 10-2 3-6-2-3-7z" />
+              <g class="seal__eyes">
+                <ellipse cx="36" cy="38" rx="4.5" ry="6" fill="#4a1027" />
+                <ellipse cx="64" cy="38" rx="4.5" ry="6" fill="#4a1027" />
+                <circle cx="37.6" cy="35.6" r="1.7" fill="#fff" />
+                <circle cx="65.6" cy="35.6" r="1.7" fill="#fff" />
+              </g>
+              <path d="M41.5 50.5q8.5 8.5 17 0" fill="none" stroke="#4a1027" stroke-width="4" stroke-linecap="round" />
+              <ellipse cx="25.5" cy="50" rx="6.5" ry="3.6" fill="#ffc2d4" opacity=".85" />
+              <ellipse cx="74.5" cy="50" rx="6.5" ry="3.6" fill="#ffc2d4" opacity=".85" />
+            </svg>
+          </span>
+
+          <button type="button" class="envelope__hit" id="openBtn" aria-label="Abrir a cartinha"></button>
+        </div>
+
+        <p class="hint" id="hint">Toque no envelope 💌</p>
+      </div>
+    </main>
+
+    <!-- Tela de comemoração -->
+    <section class="celebrate" id="celebrate" aria-hidden="true" aria-labelledby="celebrateTitle" inert>
+      <canvas class="celebrate__confetti" id="confetti" aria-hidden="true"></canvas>
+      <div class="celebrate__card">
+        <svg class="celebrate__heart" viewBox="0 0 100 90" aria-hidden="true">
+          <defs>
+            <linearGradient id="happyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ff7aa2" />
+              <stop offset="1" stop-color="#ff2f63" />
+            </linearGradient>
+          </defs>
+          <path fill="url(#happyGrad)" d="M50 86C20 66 4 50 4 30 4 14 16 4 29 4c9 0 16 5 21 13 5-8 12-13 21-13 13 0 25 10 25 26 0 20-16 36-46 56z" />
+          <path fill="#fff" opacity=".35" d="M20 18c4-5 11-6 15-3-6 1-10 5-12 10-2 3-6-2-3-7z" />
+          <path d="M30 39q6-8 12 0M58 39q6-8 12 0" fill="none" stroke="#4a1027" stroke-width="4" stroke-linecap="round" />
+          <path d="M38 49q12 16 24 0z" fill="#4a1027" stroke="#4a1027" stroke-width="3" stroke-linejoin="round" />
+          <path d="M44 55q6 4 12 0" fill="none" stroke="#ff8fb0" stroke-width="3" stroke-linecap="round" />
+          <ellipse cx="24" cy="50" rx="7" ry="4" fill="#ffc2d4" opacity=".9" />
+          <ellipse cx="76" cy="50" rx="7" ry="4" fill="#ffc2d4" opacity=".9" />
+        </svg>
+        <h2 class="celebrate__title" id="celebrateTitle" tabindex="-1">Obrigado pelo seu feedback! ❤️</h2>
+        <p class="celebrate__message" id="celebrateMessage"></p>
+        <div class="receipt" id="receipt"></div>
+        <button type="button" class="btn btn--ghost" id="replayBtn">Avaliar de novo 💌</button>
+      </div>
+    </section>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

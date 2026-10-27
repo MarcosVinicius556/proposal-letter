@@ -1,0 +1,15 @@
+{
+  "name": "proposal-letter",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Cartinha de pedido de namoro animada — envelope fofo com selo de coração, carta que sobe e botão 'Não' que foge.",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host"
+  },
+  "devDependencies": {
+    "vite": "^7.1.0"
+  }
+}
